@@ -7,7 +7,7 @@ def gale_shapley(preferences):
     """
     Get a stable matching M.
     :param preferences: tuple of 2 nxn matrices that contain preferences for each side
-    :return: A stable matching
+    :return: A stable matching in form of a list of tuples (m, w)
     """
     men = [None for _ in range(len(preferences[0]))]
     women = men[:]
@@ -22,7 +22,7 @@ def gale_shapley(preferences):
                 men[women[w_index]] = None
                 men[m_index] = w_index
                 women[w_index] = m_index
-    return men, women
+    return list(enumerate(men))
 
 
 print(gale_shapley([[[0, 1, 2, 3, 4], [1, 2, 3, 0, 4], [2, 3, 0, 1, 4], [3, 0, 1, 2, 4], [0, 1, 2, 3, 4]],
